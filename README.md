@@ -6,13 +6,13 @@ A Telegram bot that helps administrators broadcast messages to multiple users wi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/souljorje/telegram-broadcast-bot.git
+git clone https://github.com/username/telegram-broadcast-bot.git
 cd telegram-broadcast-bot
 ```
 
 2. Install dependencies:
 ```bash
-npm i
+npm install
 ```
 
 3. Create `.env` file in the project root:
@@ -25,20 +25,39 @@ TELEGRAM_BOT_TOKEN=your_bot_token_here
 npm start
 ```
 
-## Commands
+## Setup Chat for Broadcasting
 
-### Broadcast Message
-Reply to any message with command:
+1. Create a new group chat or use existing one
+2. Add your bot to this chat
+3. Make bot an administrator in the chat
+4. Send a test message to verify the bot is working
+
+## How to Broadcast
+
+1. **Write or forward** the message you want to broadcast in the admin chat where your bot is an administrator
+2. **Reply** to this message with command:
 ```
 /broadcast 123456789,987654321,555555555
 ```
-The bot will send this message to all specified users with rate limiting.
+
+Example flow:
+1. You: Send "Hello everyone! Meeting at 5 PM." in the admin chat
+2. You: Reply to this message with `/broadcast 123456,789123,456789`
+3. Bot: Starts broadcasting and shows progress
+
+## Commands
+
+### Broadcast Message
+```
+/broadcast <comma_separated_user_ids>
+```
+Must be used as a reply to the message you want to broadcast.
 
 ### Cancel Broadcast
-To stop active broadcast:
 ```
 /cancelbroadcast
 ```
+Stops active broadcast operation.
 
 ## Features
 
@@ -50,15 +69,9 @@ To stop active broadcast:
 - 🚫 Broadcast cancellation
 - 📝 Detailed delivery reports
 
-## Usage Example
+## Progress Tracking
 
-1. Forward or send the message you want to broadcast to your bot
-2. Reply to this message with:
-```
-/broadcast 123456,789123,456789
-```
-
-You'll see progress updates:
+When broadcasting, you'll see updates like:
 ```
 📤 Broadcasting messages: 45%
 ✅ Sent: 135
@@ -70,8 +83,9 @@ Use /cancelbroadcast to stop
 
 - **"There's already an active broadcast"**: Wait for current broadcast to finish or use `/cancelbroadcast`
 - **"Please wait X seconds"**: Cooldown period is active
-- **"Must be admin"**: You need admin rights in the chat
+- **"Must be admin"**: Ensure the bot and you are admins in the chat
 - **"No valid users"**: Check the user IDs format
+- **"Reply to a message to broadcast"**: Command must be used as a reply to a message
 
 ## Contributing
 
